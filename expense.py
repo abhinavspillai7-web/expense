@@ -11,7 +11,7 @@ while user_agreed:
     print(dict1)
     expense.append(dict1)
     print(expense)
-    inp=input("enter yes or no")
+    inp=input("enter yes or no:")
     inp=inp.lower()
     if inp =="yes":
         user_agreed=True
@@ -20,4 +20,4 @@ while user_agreed:
 for i in expense:
     for key, value in i.items():
         print(f"{key}:{value}")
-    print("-" * 10)
+        print("-" *10)

@@ -20,4 +20,4 @@ while user_agreed:
 for i in expense:
     for key, value in i.items():
         print(f"{key}:{value}")
-        print("-" *10)
+        print("-" *15)

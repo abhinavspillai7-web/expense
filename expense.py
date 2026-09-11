@@ -1,23 +1,42 @@
 expense=[]
-user_agreed=True
-while user_agreed:
-    dict1={}
-    user=int(input("enter amt:"))
-    desp=input("enter discription:")
-    cat=input("enter category:")
-    dict1["amount"]=user
-    dict1["description"]=desp
-    dict1["category"]=cat
-    print(dict1)
-    expense.append(dict1)
-    print(expense)
-    inp=input("enter yes or no:")
-    inp=inp.lower()
-    if inp =="yes":
+total=0
+while True:
+    print("1. add expense")
+    print("2.veiw expense")
+    print("3.total spending")
+    print("4. exit")
+    cho=int(input("enter choice:"))
+    if cho ==1:
         user_agreed=True
+        while user_agreed:
+            dict1={}
+            user=int(input("enter amt:"))
+            desp=input("enter discription:")
+            cat=input("enter category:")
+            dict1["amount"]=user
+            dict1["description"]=desp
+            dict1["category"]=cat
+            expense.append(dict1)
+            total=dict1["amount"]+total
+            inp=input("enter yes or no:")
+            inp=inp.lower()
+            if inp =="yes":
+                user_agreed=True
+            else:
+                user_agreed=False
+    elif cho == 2:
+        print("-------expense---------")
+        number=1
+        for i in expense:
+            for key, value in i.items():
+                print(f"{number}:{key}:{value}")
+            number=number+1
+            print("-" *15)
+        print("TOTAL:",total)
+    elif cho==3:
+        print("total spending")
+        print("TOTAL:",total)
+    elif cho==4:
+        break
     else:
-        user_agreed=False
-for i in expense:
-    for key, value in i.items():
-        print(f"{key}:{value}")
-        print("-" *15)
+        print("invalid")

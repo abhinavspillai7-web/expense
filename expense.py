@@ -10,14 +10,23 @@ while True:
         user_agreed=True
         while user_agreed:
             dict1={}
-            user=int(input("enter amt:"))
+            user=input("enter amt:")
+            while not user.isdigit():
+                print("Invalid amount")
+                user = input("enter amt:")
             desp=input("enter discription:")
+            while  desp.strip()== "":
+                desp=input("enter discription:")
+            categories = ["food", "travel", "shopping", "education", "other"]
             cat=input("enter category:")
+            while cat.lower() not in categories:
+                print("Invalid category")
+                cat = input("enter category:")
             dict1["amount"]=user
             dict1["description"]=desp
             dict1["category"]=cat
             expense.append(dict1)
-            total=dict1["amount"]+total
+            total=int(dict1["amount"])+total
             inp=input("enter yes or no:")
             inp=inp.lower()
             if inp =="yes":
@@ -31,7 +40,7 @@ while True:
             for key, value in i.items():
                 print(f"{number}:{key}:{value}")
             number=number+1
-            print("-" *15)
+            print("-" *25)
         print("TOTAL:",total)
     elif cho==3:
         print("total spending")

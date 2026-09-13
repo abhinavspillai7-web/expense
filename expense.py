@@ -4,16 +4,18 @@ while True:
     print("1. add expense")
     print("2.veiw expense")
     print("3.total spending")
-    print("4. exit")
+    print("4. categorise spending")
+    print("5.exit")
     cho=int(input("enter choice:"))
     if cho ==1:
         user_agreed=True
         while user_agreed:
             dict1={}
             user=input("enter amt:")
-            while not user.isdigit():
+            while not user.replace(".","",1).isdigit():
                 print("Invalid amount")
                 user = input("enter amt:")
+            user=float(user)
             desp=input("enter discription:")
             while  desp.strip()== "":
                 desp=input("enter discription:")
@@ -46,6 +48,12 @@ while True:
         print("total spending")
         print("TOTAL:",total)
     elif cho==4:
+        category_total = {"food": 0,"travel": 0,"shopping": 0,"education": 0,"other": 0}
+        for i in expense:
+            category_total[i["category"]] = category_total[i["category"]] + i["amount"]
+        for i in category_total:
+           print(f"{i.title()}:${category_total[i]:.2f}")
+    elif cho==5:
         break
     else:
         print("invalid")

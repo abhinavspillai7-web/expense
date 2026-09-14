@@ -55,17 +55,33 @@ while True:
         for i in category_total:
            print(f"{i.title()}:${category_total[i]:.2f}")
     elif cho==5:
-        ask_cat=input("enter a category(food,travel,shopping,education,others):")
-        ask_cat=ask_cat.lower()
-        found=0
-        for i in expense:
-            if  ask_cat == i["category"]:
-                print("found")
-                print(f"₹{i['amount']} | {i['description']} | {i['category'].title()}")
-                found=1
-        if found == 0:
-            print("not found")
-
+        print("1. search by category")
+        print("2.search by description")
+        chose=int(input("enter choice:"))
+        if chose==1:
+            ask_cat=input("enter a category(food,travel,shopping,education,others):")
+            ask_cat=ask_cat.lower()
+            found=0
+            for i in expense:
+                if  ask_cat == i["category"]:
+                    print("found")
+                    print(f"₹{i['amount']} | {i['description']} | {i['category'].title()}")
+                    found=1
+            if found == 0:
+                print("not found")
+        elif chose==2:
+            ask_desc=input("enter your description:")
+            ask_desc=ask_desc.lower()
+            found=0
+            for i in expense:
+                if  ask_desc == i["description"]:
+                    print("found")
+                    print(f"₹{i['amount']} | {i['description']} | {i['category'].title()}")
+                    found=1
+            if found == 0:
+                print("not found")
+        else:
+            print("invalid")
     elif cho==6:
         break
     else:

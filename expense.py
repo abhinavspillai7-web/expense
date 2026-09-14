@@ -5,7 +5,8 @@ while True:
     print("2.veiw expense")
     print("3.total spending")
     print("4. categorise spending")
-    print("5.exit")
+    print("5.search and filter")
+    print("6.exit")
     cho=int(input("enter choice:"))
     if cho ==1:
         user_agreed=True
@@ -54,6 +55,18 @@ while True:
         for i in category_total:
            print(f"{i.title()}:${category_total[i]:.2f}")
     elif cho==5:
+        ask_cat=input("enter a category(food,travel,shopping,education,others):")
+        ask_cat=ask_cat.lower()
+        found=0
+        for i in expense:
+            if  ask_cat == i["category"]:
+                print("found")
+                print(f"₹{i['amount']} | {i['description']} | {i['category'].title()}")
+                found=1
+        if found == 0:
+            print("not found")
+
+    elif cho==6:
         break
     else:
         print("invalid")

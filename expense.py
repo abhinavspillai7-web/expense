@@ -6,7 +6,9 @@ while True:
     print("3.total spending")
     print("4. categorise spending")
     print("5.search and filter")
-    print("6.exit")
+    print("6.delete expense")
+    print("7.edit expense")
+    print("8.exit")
     cho=int(input("enter choice:"))
     if cho ==1:
         user_agreed=True
@@ -83,6 +85,80 @@ while True:
         else:
             print("invalid")
     elif cho==6:
+        num1=1
+        for i in expense:
+            print(f"{num}.{i}")
+            num1=num1+1
+        if len(expense)==0:
+            print("no expense is currently present")
+        else:
+            num=int(input("enter your choice:"))
+            index=num-1
+            if num>=1 and num<=len(expense):
+                deleted_item=expense.pop(index)
+                print(f"item deleted:{deleted_item}")
+            else:
+                print("item not found")
+    elif cho == 7:
+        print("what do you want to edit")
+        print("1.amount")
+        print("2.description")
+        print("3.category")
+        choed = int(input("enter your choice:"))
+        if choed == 1:
+            num3 = 1
+            for i in expense:
+                print(f"{num3}.{i}")
+                num3 = num3 + 1
+            num2 = int(input("enter your choice:"))
+            index1 = num2 - 1
+            if num2 >= 1 and num2 <= len(expense):
+                new_amt = input("enter amt:")
+                while not new_amt.replace(".", "", 1).isdigit():
+                    print("Invalid amount")
+                    new_amt = input("enter amt:")
+                new_amt = float(new_amt)
+                expense[index1]["amount"] = new_amt
+                print("edited sucessfully")
+            else:
+                print("item not found")
+        elif choed == 2:
+            num4 = 1
+            for i in expense:
+                print(f"{num4}.{i}")
+                num4 = num4 + 1
+            num5 = int(input("enter your choice:"))
+            index3 = num5 - 1
+            if num5 >= 1 and num5 <= len(expense):
+                new_desc = input("enter new description:")
+                while new_desc.strip() == "":
+                    print("Invalid description")
+                    new_desc = input("enter new description:")
+                expense[index3]["description"] = new_desc
+                print("edited sucessfully")
+            else:
+                print("invalid number")
+        elif choed == 3:
+            num6 = 1
+            for i in expense:
+                print(f"{num6}.{i}")
+                num6 = num6 + 1
+            num7 = int(input("enter your choice:"))
+            index4 = num7 - 1
+            if num7 >= 1 and num7 <= len(expense):
+                new_cat = input("enter new category:")
+                new_cat = new_cat.lower()
+                while new_cat not in categories:
+                    print("invalid category")
+                    new_cat = input("enter new category:")
+                    new_cat = new_cat.lower()
+                expense[index4]["category"] = new_cat
+                print("edited sucessfully")
+            else:
+                print("invalid")
+        else:
+            print("invalid number")
+    elif cho==8:
         break
     else:
         print("invalid")

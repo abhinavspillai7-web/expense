@@ -1,5 +1,11 @@
+import json
 expense=[]
 total=0
+try:
+    with open("expenses.json","r") as file:
+        expense=json.load(file)
+except FileNotFoundError:
+    expense=[]       
 while True:
     print("1. add expense")
     print("2.veiw expense")
@@ -31,6 +37,8 @@ while True:
             dict1["description"]=desp
             dict1["category"]=cat
             expense.append(dict1)
+            with open("expenses.json","w") as file:
+                json.dump(expense,file)
             total=int(dict1["amount"])+total
             inp=input("enter yes or no:")
             inp=inp.lower()
@@ -87,7 +95,7 @@ while True:
     elif cho==6:
         num1=1
         for i in expense:
-            print(f"{num}.{i}")
+            print(f"{num1}.{i}")
             num1=num1+1
         if len(expense)==0:
             print("no expense is currently present")
@@ -96,6 +104,8 @@ while True:
             index=num-1
             if num>=1 and num<=len(expense):
                 deleted_item=expense.pop(index)
+                with open("expenses.json","w") as file:
+                    json.dump(expense,file)
                 print(f"item deleted:{deleted_item}")
             else:
                 print("item not found")
@@ -119,6 +129,8 @@ while True:
                     new_amt = input("enter amt:")
                 new_amt = float(new_amt)
                 expense[index1]["amount"] = new_amt
+                with open("expenses.json","w") as file:
+                    json.dump(expense,file)
                 print("edited sucessfully")
             else:
                 print("item not found")
@@ -135,6 +147,8 @@ while True:
                     print("Invalid description")
                     new_desc = input("enter new description:")
                 expense[index3]["description"] = new_desc
+                with open("expenses.json","w") as file:
+                    json.dump(expense,file)
                 print("edited sucessfully")
             else:
                 print("invalid number")
@@ -153,6 +167,8 @@ while True:
                     new_cat = input("enter new category:")
                     new_cat = new_cat.lower()
                 expense[index4]["category"] = new_cat
+                with open("expenses.json","w") as file:
+                    json.dump(expense,file)
                 print("edited sucessfully")
             else:
                 print("invalid")

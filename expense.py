@@ -1,4 +1,14 @@
 import json
+import sqlite3
+conn=sqlite3.connect("expenses.db")
+cursor=conn.cursor()
+cursor.execute("""CREATE TABLE IF NOT EXISTS expenses(
+id INTEGER PRIMARY KEY,
+amount REAL,
+description TEXT,
+category TEXT)""")
+conn.commit()
+
 expense=[]
 total=0
 try:
@@ -39,7 +49,12 @@ while True:
             expense.append(dict1)
             with open("expenses.json","w") as file:
                 json.dump(expense,file)
-            total=int(dict1["amount"])+total
+            cursor.execute("""
+            INSERT INTO expenses (amount, description, category)
+            VALUES (?, ?, ?)
+            """, (user, desp, cat))
+            conn.commit()
+            total=user+total
             inp=input("enter yes or no:")
             inp=inp.lower()
             if inp =="yes":

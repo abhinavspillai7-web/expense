@@ -64,21 +64,24 @@ while True:
     elif cho == 2:
         print("-------expense---------")
         number=1
-        for i in expense:
-            for key, value in i.items():
-                print(f"{number}:{key}:{value}")
+        cursor.execute("SELECT * FROM expenses")
+        items = cursor.fetchall()
+        for i in items:
+            print(f"{number}:{i[1]}:{i[2]}:{i[3]}")
             number=number+1
-            print("-" *25)
+            print("-"*25)
         print("TOTAL:",total)
     elif cho==3:
-        print("total spending")
-        print("TOTAL:",total)
+        cursor.execute("SELECT SUM(amount) FROM expenses")
+        result=cursor.fetchone()
+        print("--------total spending---------")
+        print("TOTAL:",result[0])
+        print("-"*25)
     elif cho==4:
-        category_total = {"food": 0,"travel": 0,"shopping": 0,"education": 0,"other": 0}
-        for i in expense:
-            category_total[i["category"]] = category_total[i["category"]] + i["amount"]
-        for i in category_total:
-           print(f"{i.title()}:${category_total[i]:.2f}")
+        cursor.execute("SELECT category, SUM(amount) FROM expenses GROUP BY category")
+        result=cursor.fetchall()
+        for i in result:
+            print(f"{i[0].title()}:${i[1]:.2f}")
     elif cho==5:
         print("1. search by category")
         print("2.search by description")

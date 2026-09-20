@@ -129,7 +129,7 @@ expense-tracker/
 ### Installation
 
 ```bash
-git clone https://github.com/your-username/expense-tracker.git
+git clone https://github.com/abhinavspillai7-web/expense-tracker.git
 cd expense-tracker
 pip install -r requirements.txt
 ```
@@ -235,9 +235,9 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 ## 📬 Contact
 
-**Your Name**
-📧 your.email@example.com
-🔗 [LinkedIn](https://linkedin.com/in/your-profile) · [GitHub](https://github.com/your-username)
+**Abhinav S Pillai**
+📧 abhinavspillai7@gmail.com
+🔗 [GitHub](https://github.com/abhinavspillai7-web)
 
 ---
 
